@@ -1,4 +1,4 @@
-package com.onedream.dayu.crash_default_imp
+package com.onedream.dayu.crash.imp
 
 import android.content.Context
 import android.os.Environment
