@@ -43,7 +43,7 @@ object DaYuCrashLogFileManager {
         data: ByteArray
     ): String? {
         //FIXME
-        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+        if (Environment.getExternalStorageState() != Environment.MEDIA_MOUNTED) {
             printLog("Environment.getExternalStorageState() not equal Environment.MEDIA_MOUNTED")
             return null
         }
@@ -73,7 +73,7 @@ object DaYuCrashLogFileManager {
         fileName: String
     ): File? {
         //FIXME
-        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+        if (Environment.getExternalStorageState() != Environment.MEDIA_MOUNTED) {
             printLog("Environment.getExternalStorageState() not equal Environment.MEDIA_MOUNTED")
             return null
         }

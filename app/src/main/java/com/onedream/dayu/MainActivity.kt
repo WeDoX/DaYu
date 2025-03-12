@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.onedream.dayu.protector.whitelist.DaYuProtectorWhiteListModel
 import com.onedream.dayu.ui.theme.DaYuTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,17 +45,24 @@ class MainActivity : ComponentActivity() {
                             throwNullPointerException()
                         })
                         Spacer(modifier = Modifier.height(20.dp))
-                        PlayBugButton(btnTitle= "throwCustomerException1", onClick = {
-                            throwCustomerException("抛出自定义的异常1")
+                        PlayBugButton(btnTitle= "throwException", onClick = {
+                            throwException("抛出异常")
                         })
                         Spacer(modifier = Modifier.height(20.dp))
-                        PlayBugButton(btnTitle= "throwCustomerException2", onClick = {
-                            throwCustomerException("抛出自定义的异常2")
+                        PlayBugButton(btnTitle= "throwCustomerException", onClick = {
+                            throwCustomerException("抛出自定义的异常")
                         })
+                        //
+                        Spacer(modifier = Modifier.height(20.dp))
+                        PlayBugButton(btnTitle= "protectCustomerException", onClick = {
+                            protectCustomerException()
+                        })
+                        //
                         Spacer(modifier = Modifier.height(20.dp))
                         PlayBugButton(btnTitle= "getLastExceptionBug", onClick = {
                             getLastExceptionBug()
                         })
+
                         Greeting(message.value)
                     }
                 }
@@ -68,10 +76,20 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun throwCustomerException(errMsg:String){
+    private fun throwException(errMsg:String){
         Handler(Looper.getMainLooper()).post {
             throw Exception(errMsg)
         }
+    }
+
+    private fun throwCustomerException(errMsg:String){
+        Handler(Looper.getMainLooper()).post {
+            throw CustomerException(errMsg)
+        }
+    }
+
+    private fun protectCustomerException(){
+        DaYu.writeWhiteList(arrayListOf(DaYuProtectorWhiteListModel("CustomerException")))
     }
 
     private fun getLastExceptionBug(){

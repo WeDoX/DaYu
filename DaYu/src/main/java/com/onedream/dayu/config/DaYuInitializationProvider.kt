@@ -7,9 +7,7 @@ import android.net.Uri
 import com.onedream.dayu.DaYu
 
 class DaYuInitializationProvider : ContentProvider() {
-    //查看Framework层的ActivityThread中的handleBindApplication方法可知：
-    //1、该onCreate方法在Application的onCreate方法前执行
-    //2、由于if (mContext == null)才会调用该onCreate方法，所以多进程时，也不会造成影响
+
     override fun onCreate(): Boolean {
         val applicationContext = context!!.applicationContext
         DaYu.init(applicationContext)

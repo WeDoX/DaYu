@@ -5,6 +5,8 @@ import android.content.Context
 import com.onedream.dayu.crash.DaYuCrashHandler
 import com.onedream.dayu.crash.DaYuCrashLogFileManager
 import com.onedream.dayu.protector.LaoYe
+import com.onedream.dayu.protector.whitelist.DaYuProtectorWhiteList
+import com.onedream.dayu.protector.whitelist.DaYuProtectorWhiteListModel
 import java.io.File
 
 /**
@@ -24,5 +26,10 @@ object DaYu {
     @JvmStatic
     fun getCrashLogFile(context: Context): File? {
         return DaYuCrashLogFileManager.getCrashLogFile(context)
+    }
+
+    @JvmStatic
+    fun writeWhiteList(whiteListData: List<DaYuProtectorWhiteListModel>) {
+        DaYuProtectorWhiteList.writeWhiteList(whiteListData)
     }
 }

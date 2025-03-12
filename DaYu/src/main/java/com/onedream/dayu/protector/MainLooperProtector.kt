@@ -3,6 +3,7 @@ package com.onedream.dayu.protector
 import android.app.Application
 import android.os.Handler
 import android.os.Looper
+import com.onedream.dayu.protector.whitelist.DaYuProtectorWhiteList
 
 class MainLooperProtector : IProtector {
 
@@ -26,22 +27,16 @@ class MainLooperProtector : IProtector {
             try {
                 Looper.loop()
             } catch (exception: Exception) {
-                if (handleProcessException(exception)) {
-                    return@post
-                }
-                throw exception
+                handleProcessException(exception)
             }
         }
     }
 
-    private fun handleProcessException(exception: Exception): Boolean {
-        when (exception) {
-            is NullPointerException -> {
-                //todo 额外处理
-                protectMainLooper()//继续保护
-                return true
-            }
+    private fun handleProcessException(exception: Exception) {
+        if (DaYuProtectorWhiteList.protect(exception)) {
+            protectMainLooper()
+            return
         }
-        return false
+        throw exception
     }
 }
