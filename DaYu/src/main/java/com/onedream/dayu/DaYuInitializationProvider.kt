@@ -5,8 +5,7 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
-import com.onedream.dayu.crash.CrashHandler
-import com.onedream.dayu.crash.imp.SaveLocalFileCrashCustomHandleListenerImp
+import com.onedream.dayu.crash.DaYuCrashHandler
 import com.onedream.dayu.protector.LaoYe
 
 class DaYuInitializationProvider : ContentProvider() {
@@ -18,8 +17,7 @@ class DaYuInitializationProvider : ContentProvider() {
         //
         LaoYe.protectApp((applicationContext as Application))
         //
-        CrashHandler.getInstance()
-            .init(applicationContext, SaveLocalFileCrashCustomHandleListenerImp())
+        DaYuCrashHandler.init(applicationContext)
         //
         return false
     }
