@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
     private fun getLastExceptionBug(){
         val crashLogFile = DaYuCrashLogFileManager.getCrashLogFile(this@MainActivity)
         var crashLog = ""
-        crashLogFile.forEachLine { line ->
+        crashLogFile?.forEachLine { line ->
             crashLog = "$crashLog \n $line"
         }
         message.value = crashLog
