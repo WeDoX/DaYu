@@ -7,9 +7,9 @@
             android:authorities="${applicationId}.AppInitializationProvider"
             android:exported="false" />
         <activity
-            android:name=".restart.PhoenixActivity"
+            android:name=".restart.DaYuPhoenixActivity"
             android:exported="false"
-            android:process=":phoenix"
+            android:process=":DaYuPhoenix"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 </manifest>

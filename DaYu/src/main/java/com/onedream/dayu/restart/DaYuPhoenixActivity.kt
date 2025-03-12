@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
  * @author chenguijian
  * @since 2025/03/12
  */
-class PhoenixActivity : AppCompatActivity() {
+class DaYuPhoenixActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Kill original main process
@@ -57,7 +57,7 @@ class PhoenixActivity : AppCompatActivity() {
 
         @JvmStatic
         fun actionStart(context: Context, pid: Int) {
-            val intent = Intent(context, PhoenixActivity::class.java)
+            val intent = Intent(context, DaYuPhoenixActivity::class.java)
                 .setFlags(FLAG_ACTIVITY_NEW_TASK)
                 .putExtra(KEY_MAIN_PROCESS_PID, pid)
             context.startActivity(intent)

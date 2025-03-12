@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.onedream.dayu.restart.PhoenixActivity;
+import com.onedream.dayu.restart.DaYuPhoenixActivity;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
@@ -86,7 +86,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 }
             }.start();
             //
-            PhoenixActivity.actionStart(mContext, Process.myPid());
+            DaYuPhoenixActivity.actionStart(mContext, Process.myPid());
         }
     }
 
