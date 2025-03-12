@@ -2,10 +2,13 @@ package com.onedream.dayu.crash;
 
 import android.content.Context;
 import android.os.Looper;
+import android.os.Process;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.onedream.dayu.restart.PhoenixActivity;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
@@ -78,12 +81,12 @@ public class CrashHandler implements UncaughtExceptionHandler {
                 @Override
                 public void run() {
                     Looper.prepare();
-                    Toast.makeText(mContext, "App崩溃,即将退出", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "App崩溃,即将重启", Toast.LENGTH_SHORT).show();
                     Looper.loop();
                 }
             }.start();
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
+            //
+            PhoenixActivity.actionStart(mContext, Process.myPid());
         }
     }
 

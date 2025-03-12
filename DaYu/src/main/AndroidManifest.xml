@@ -6,5 +6,10 @@
             android:name=".DaYuInitializationProvider"
             android:authorities="${applicationId}.AppInitializationProvider"
             android:exported="false" />
+        <activity
+            android:name=".restart.PhoenixActivity"
+            android:exported="false"
+            android:process=":phoenix"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 </manifest>
