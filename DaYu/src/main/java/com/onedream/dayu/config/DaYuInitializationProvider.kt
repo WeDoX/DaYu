@@ -1,12 +1,10 @@
-package com.onedream.dayu
+package com.onedream.dayu.config
 
-import android.app.Application
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
-import com.onedream.dayu.crash.DaYuCrashHandler
-import com.onedream.dayu.protector.LaoYe
+import com.onedream.dayu.DaYu
 
 class DaYuInitializationProvider : ContentProvider() {
     //查看Framework层的ActivityThread中的handleBindApplication方法可知：
@@ -14,11 +12,7 @@ class DaYuInitializationProvider : ContentProvider() {
     //2、由于if (mContext == null)才会调用该onCreate方法，所以多进程时，也不会造成影响
     override fun onCreate(): Boolean {
         val applicationContext = context!!.applicationContext
-        //
-        LaoYe.protectApp((applicationContext as Application))
-        //
-        DaYuCrashHandler.init(applicationContext)
-        //
+        DaYu.init(applicationContext)
         return false
     }
 

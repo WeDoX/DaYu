@@ -1,4 +1,4 @@
-package com.onedream.dayu.crash.imp
+package com.onedream.dayu.crash.model
 
 import android.content.Context
 import android.os.Build

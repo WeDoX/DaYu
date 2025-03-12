@@ -4,8 +4,7 @@ import android.content.Context
 import android.os.Looper
 import android.os.Process
 import android.widget.Toast
-import com.onedream.dayu.crash.imp.CrashLogUploadModelBuilder
-import com.onedream.dayu.crash.imp.DaYuCrashLogFileManager
+import com.onedream.dayu.crash.model.CrashLogUploadModelBuilder
 import com.onedream.dayu.restart.DaYuPhoenixActivity
 
 

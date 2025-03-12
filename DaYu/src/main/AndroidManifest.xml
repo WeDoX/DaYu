@@ -3,7 +3,7 @@
 
     <application>
         <provider
-            android:name=".DaYuInitializationProvider"
+            android:name=".config.DaYuInitializationProvider"
             android:authorities="${applicationId}.AppInitializationProvider"
             android:exported="false" />
         <activity

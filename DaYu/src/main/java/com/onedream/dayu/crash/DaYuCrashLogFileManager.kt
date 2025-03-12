@@ -1,4 +1,4 @@
-package com.onedream.dayu.crash.imp
+package com.onedream.dayu.crash
 
 import android.content.Context
 import android.os.Environment
@@ -20,12 +20,12 @@ object DaYuCrashLogFileManager {
     private val FileLock = Any()
 
     @JvmStatic
-    fun getCrashLogFile(mContext: Context): File? {
+    internal fun getCrashLogFile(mContext: Context): File? {
         return getFile(mContext, CRASH_LOG_DIR, CRASH_LOG_FILE_NAME)
     }
 
     @JvmStatic
-    fun saveToLocalFile(context: Context, crashLogStr: String) {
+    internal fun saveToLocalFile(context: Context, crashLogStr: String) {
         printLog("需要存储的崩溃信息为:$crashLogStr")
         writeToFile(
             context,

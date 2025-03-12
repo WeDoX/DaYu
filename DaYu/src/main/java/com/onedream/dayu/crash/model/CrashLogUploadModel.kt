@@ -1,4 +1,4 @@
-package com.onedream.dayu.crash.imp
+package com.onedream.dayu.crash.model
 
 /**
  * {    "app_info": {        "version_code": "3", // 版本号        "version_name": "1.2.4", //版本名    },    "platform_info": {        "platform": 0, // 0、ios 1、安卓         "version_code": "10.0.7", //版本号        "version_name": "25", // 版本名        "manufacturer": "华为", //制造商        "brand": "荣耀", //品牌        "model": "", // 型号        "arch": "" // cpu架构    },    "crash_info": {        "cash_time": "@timestamp", // 崩溃时间 时间戳 单位毫秒级        "cash_log": "" // 详细崩溃日志    }}
