@@ -2,6 +2,7 @@ package com.onedream.dayu.crash.imp
 
 import android.content.Context
 import android.os.Build
+import com.google.gson.Gson
 import com.onedream.dayu.utils.AppPackageInfoCompat
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -11,12 +12,20 @@ import java.util.Arrays
 object CrashLogUploadModelBuilder {
 
     @JvmStatic
-    fun createCrashLogUpload(
-        mContext: Context,
+    fun createCrashLogStr(
+        context: Context,
+        throwable: Throwable
+    ): String {
+        val crashLogUpload = createCrashLogUpload(context, throwable)
+        return Gson().toJson(crashLogUpload)
+    }
+
+    private fun createCrashLogUpload(
+        context: Context,
         throwable: Throwable
     ): CrashLogUploadModel {
 
-        val appInfo = createAppInfo(mContext)
+        val appInfo = createAppInfo(context)
         val platformInfo = createPlatformInfo()
         val crashInfo = createCrashInfo(throwable)
 
@@ -28,10 +37,10 @@ object CrashLogUploadModelBuilder {
 
     }
 
-    private fun createAppInfo(mContext: Context): AppInfoModel {
+    private fun createAppInfo(context: Context): AppInfoModel {
         return AppInfoModel(
-            version_code = AppPackageInfoCompat.getVersionCode(mContext).toString(),
-            version_name = AppPackageInfoCompat.getVersionName(mContext)
+            version_code = AppPackageInfoCompat.getVersionCode(context).toString(),
+            version_name = AppPackageInfoCompat.getVersionName(context)
         )
     }
 
