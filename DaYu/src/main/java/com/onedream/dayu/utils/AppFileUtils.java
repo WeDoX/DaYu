@@ -1,4 +1,4 @@
-package com.onedream.dayu.crash;
+package com.onedream.dayu.utils;
 
 import android.content.Context;
 import android.util.Log;
