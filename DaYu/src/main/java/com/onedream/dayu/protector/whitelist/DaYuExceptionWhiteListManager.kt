@@ -3,6 +3,7 @@ package com.onedream.dayu.protector.whitelist
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.onedream.dayu.DaYu
+import com.onedream.dayu.protector.whitelist.model.DaYuExceptionWhiteListModel
 
 
 /**

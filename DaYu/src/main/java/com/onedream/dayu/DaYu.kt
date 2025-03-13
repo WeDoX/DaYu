@@ -6,7 +6,7 @@ import com.onedream.dayu.crash.DaYuCrashHandler
 import com.onedream.dayu.crash.DaYuCrashLogFileManager
 import com.onedream.dayu.protector.LaoYe
 import com.onedream.dayu.protector.whitelist.DaYuExceptionWhiteListManager
-import com.onedream.dayu.protector.whitelist.DaYuExceptionWhiteListModel
+import com.onedream.dayu.protector.whitelist.model.DaYuExceptionWhiteListModel
 import java.io.File
 
 /**

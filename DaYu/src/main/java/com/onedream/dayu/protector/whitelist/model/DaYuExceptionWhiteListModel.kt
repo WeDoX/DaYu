@@ -1,4 +1,4 @@
-package com.onedream.dayu.protector.whitelist
+package com.onedream.dayu.protector.whitelist.model
 
 /**
  *@author chenguijian
