@@ -3,10 +3,9 @@ package com.onedream.dayu.protector
 import android.app.Application
 import android.os.Handler
 import android.os.Looper
-import com.onedream.dayu.protector.whitelist.DaYuProtectorWhiteList
+import com.onedream.dayu.protector.whitelist.DaYuProtectorExceptionWhiteListManager
 
 class MainLooperProtector : IProtector {
-
     override fun protect(application: Application) {
         protectMainLooper()
     }
@@ -33,7 +32,7 @@ class MainLooperProtector : IProtector {
     }
 
     private fun handleProcessException(exception: Exception) {
-        if (DaYuProtectorWhiteList.protect(exception)) {
+        if (DaYuProtectorExceptionWhiteListManager.protect(exception)) {
             protectMainLooper()
             return
         }

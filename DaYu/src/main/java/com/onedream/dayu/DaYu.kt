@@ -5,8 +5,8 @@ import android.content.Context
 import com.onedream.dayu.crash.DaYuCrashHandler
 import com.onedream.dayu.crash.DaYuCrashLogFileManager
 import com.onedream.dayu.protector.LaoYe
-import com.onedream.dayu.protector.whitelist.DaYuProtectorWhiteList
-import com.onedream.dayu.protector.whitelist.DaYuProtectorWhiteListModel
+import com.onedream.dayu.protector.whitelist.DaYuProtectorExceptionWhiteListManager
+import com.onedream.dayu.protector.whitelist.DaYuProtectorExceptionWhiteListModel
 import java.io.File
 
 /**
@@ -15,12 +15,19 @@ import java.io.File
  */
 object DaYu {
 
+    private var applicationContext: Context? = null
 
     internal fun init(context: Context){
+        //
+        applicationContext = context
         //
         LaoYe.protectApp((context as Application))
         //
         DaYuCrashHandler.init(context)
+    }
+
+    fun requireContext(): Context {
+        return applicationContext ?: throw IllegalStateException("DaYu don't call init(context) method")
     }
 
     @JvmStatic
@@ -29,7 +36,7 @@ object DaYu {
     }
 
     @JvmStatic
-    fun writeWhiteList(whiteListData: List<DaYuProtectorWhiteListModel>) {
-        DaYuProtectorWhiteList.writeWhiteList(whiteListData)
+    fun writeWhiteList(whiteListData: List<DaYuProtectorExceptionWhiteListModel>, append : Boolean) {
+        DaYuProtectorExceptionWhiteListManager.writeWhiteList(whiteListData, append)
     }
 }

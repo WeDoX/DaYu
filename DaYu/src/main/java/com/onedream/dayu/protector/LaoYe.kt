@@ -9,6 +9,7 @@ object LaoYe {
     private val protectorList = arrayListOf<IProtector>()
     init {
         protectorList.add(MainLooperProtector())
+        protectorList.add(TestApplicationPerformanceMonitoringProtector())
     }
 
     fun protectApp(app: Application) {
