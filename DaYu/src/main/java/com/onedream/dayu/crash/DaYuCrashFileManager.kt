@@ -30,7 +30,7 @@ object DaYuCrashFileManager {
             context,
             CRASH_LOG_DIR,
             CRASH_LOG_FILE_NAME,
-            crashLogStr.toByteArray(StandardCharsets.UTF_8),
+            crashLogStr,
             FILE_LOCK
         )
     }

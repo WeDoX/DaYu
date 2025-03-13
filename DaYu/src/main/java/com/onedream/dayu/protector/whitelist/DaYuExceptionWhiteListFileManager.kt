@@ -3,7 +3,6 @@ package com.onedream.dayu.protector.whitelist
 import android.content.Context
 import android.util.Log
 import com.onedream.dayu.utils.DaYuFileManager
-import java.nio.charset.StandardCharsets
 
 /**
  *@author chenguijian
@@ -31,7 +30,7 @@ object DaYuExceptionWhiteListFileManager {
             context,
             WHITELIST_DIR,
             WHITELIST_FILE_NAME,
-            whitelistStr.toByteArray(StandardCharsets.UTF_8),
+            whitelistStr,
             FILE_LOCK
         )
     }

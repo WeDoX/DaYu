@@ -6,6 +6,7 @@ import android.util.Log
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
+import java.nio.charset.StandardCharsets
 
 /**
  *@author chenguijian
@@ -19,7 +20,7 @@ object DaYuFileManager {
         context: Context,
         dir: String,
         fileName: String,
-        data: ByteArray,
+        data: String,
         lock: Any,
     ): String? {
         //FIXME
@@ -29,6 +30,7 @@ object DaYuFileManager {
         }
         val dirPath = context.getExternalFilesDir(dir)!!.path + File.separator
         val filePath = dirPath + fileName
+        var fileOutputStream: FileOutputStream? = null
         try {
             val dirFile = File(dirPath)
             if (!dirFile.exists() && !dirFile.mkdirs()) {
@@ -36,13 +38,15 @@ object DaYuFileManager {
                 return null
             }
             synchronized(lock) {
-                val fos = FileOutputStream(filePath, false)
-                fos.write(data)
-                fos.close()
+                fileOutputStream = FileOutputStream(filePath, false).apply {
+                    write(data.toByteArray(StandardCharsets.UTF_8))
+                }
             }
             return filePath
         } catch (e: Exception) {
             printLog("fail to write:$filePath Exception=$e")
+        } finally {
+            fileOutputStream?.close()
         }
         return null
     }
@@ -88,7 +92,7 @@ object DaYuFileManager {
             val size: Int = inputStream.available()
             val buffer = ByteArray(size)
             inputStream.read(buffer)
-            fileStr = String(buffer, Charsets.UTF_8)
+            fileStr = String(buffer, StandardCharsets.UTF_8)
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
