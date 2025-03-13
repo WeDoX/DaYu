@@ -24,12 +24,7 @@ object DaYuFileManager {
         lock: Any,
     ): String? {
         //
-        val dirPath = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            "${context.getExternalFilesDir(dir)!!.path}${File.separator}"
-        }else{
-            "${context.filesDir.path}${File.separator}${dir}${File.separator}"
-        }
-
+        val dirPath = fileSaveDirPath(context, dir)
         val filePath = dirPath + fileName
         var fileOutputStream: FileOutputStream? = null
         try {
@@ -55,16 +50,11 @@ object DaYuFileManager {
     @JvmStatic
     fun getFile(
         context: Context,
-        dir: String?,
+        dir: String,
         fileName: String
     ): File? {
         //
-        val dirPath = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            "${context.getExternalFilesDir(dir)!!.path}${File.separator}"
-        }else{
-            "${context.filesDir.path}${File.separator}${dir}${File.separator}"
-        }
-
+        val dirPath = fileSaveDirPath(context, dir)
         val filePath = dirPath + fileName
         try {
             val dirFile = File(dirPath)
@@ -101,6 +91,17 @@ object DaYuFileManager {
             inputStream?.close()
         }
         return fileStr
+    }
+
+    private fun fileSaveDirPath(
+        context: Context,
+        dir: String
+    ): String {
+        return if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+            "${context.getExternalFilesDir(dir)!!.path}${File.separator}"
+        } else {
+            "${context.filesDir.path}${File.separator}${dir}${File.separator}"
+        }
     }
 
     private fun printLog(logContent: String) {
