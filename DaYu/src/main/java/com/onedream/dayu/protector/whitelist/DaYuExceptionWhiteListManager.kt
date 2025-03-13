@@ -61,10 +61,8 @@ object DaYuExceptionWhiteListManager {
         append: Boolean
     ) {
         if (append) {
-            //FIXME : 考虑去重
             val newWhiteListData = ArrayList<DaYuExceptionWhiteListModel>()
-            newWhiteListData.addAll(readWhiteList())
-            newWhiteListData.addAll(whiteListData)
+            newWhiteListData.addAll(readWhiteList().union(whiteListData))
             DaYuExceptionWhiteListFileManager.saveToLocalFile(
                 DaYu.requireContext(),
                 Gson().toJson(newWhiteListData)
