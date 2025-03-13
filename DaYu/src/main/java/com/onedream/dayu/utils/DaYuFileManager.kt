@@ -23,12 +23,13 @@ object DaYuFileManager {
         data: String,
         lock: Any,
     ): String? {
-        //FIXME
-        if (Environment.getExternalStorageState() != Environment.MEDIA_MOUNTED) {
-            printLog("Environment.getExternalStorageState() not equal Environment.MEDIA_MOUNTED")
-            return null
+        //
+        val dirPath = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+            "${context.getExternalFilesDir(dir)!!.path}${File.separator}"
+        }else{
+            "${context.filesDir.path}${File.separator}${dir}${File.separator}"
         }
-        val dirPath = context.getExternalFilesDir(dir)!!.path + File.separator
+
         val filePath = dirPath + fileName
         var fileOutputStream: FileOutputStream? = null
         try {
@@ -57,12 +58,13 @@ object DaYuFileManager {
         dir: String?,
         fileName: String
     ): File? {
-        //FIXME
-        if (Environment.getExternalStorageState() != Environment.MEDIA_MOUNTED) {
-            printLog("Environment.getExternalStorageState() not equal Environment.MEDIA_MOUNTED")
-            return null
+        //
+        val dirPath = if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+            "${context.getExternalFilesDir(dir)!!.path}${File.separator}"
+        }else{
+            "${context.filesDir.path}${File.separator}${dir}${File.separator}"
         }
-        val dirPath = context.getExternalFilesDir(dir)!!.path + File.separator
+
         val filePath = dirPath + fileName
         try {
             val dirFile = File(dirPath)
