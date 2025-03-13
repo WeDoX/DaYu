@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Looper
 import android.os.Process
 import android.widget.Toast
-import com.onedream.dayu.crash.model.CrashLogUploadModelBuilder
+import com.onedream.dayu.crash.model.DaYuCrashLogModelBuilder
 import com.onedream.dayu.restart.DaYuPhoenixActivity
 
 
@@ -20,7 +20,7 @@ object DaYuCrashHandler {
     private fun handleUncaughtException(context: Context, thread: Thread?, throwable: Throwable?) {
         try {
             throwable?.apply {
-                val crashLogStr = CrashLogUploadModelBuilder.createCrashLogStr(context, this)
+                val crashLogStr = DaYuCrashLogModelBuilder.createCrashLogStr(context, this)
                 DaYuCrashLogFileManager.saveToLocalFile(context, crashLogStr)
             }
         } finally {

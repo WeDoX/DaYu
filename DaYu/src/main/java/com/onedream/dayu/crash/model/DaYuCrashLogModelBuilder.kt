@@ -9,7 +9,7 @@ import java.io.StringWriter
 import java.io.Writer
 import java.util.Arrays
 
-object CrashLogUploadModelBuilder {
+object DaYuCrashLogModelBuilder {
 
     @JvmStatic
     fun createCrashLogStr(
