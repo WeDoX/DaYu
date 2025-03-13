@@ -5,8 +5,8 @@ import android.content.Context
 import com.onedream.dayu.crash.DaYuCrashHandler
 import com.onedream.dayu.crash.DaYuCrashLogFileManager
 import com.onedream.dayu.protector.LaoYe
-import com.onedream.dayu.protector.whitelist.DaYuProtectorExceptionWhiteListManager
-import com.onedream.dayu.protector.whitelist.DaYuProtectorExceptionWhiteListModel
+import com.onedream.dayu.protector.whitelist.DaYuExceptionWhiteListManager
+import com.onedream.dayu.protector.whitelist.DaYuExceptionWhiteListModel
 import java.io.File
 
 /**
@@ -36,7 +36,7 @@ object DaYu {
     }
 
     @JvmStatic
-    fun writeWhiteList(whiteListData: List<DaYuProtectorExceptionWhiteListModel>, append : Boolean) {
-        DaYuProtectorExceptionWhiteListManager.writeWhiteList(whiteListData, append)
+    fun writeWhiteList(whiteListData: List<DaYuExceptionWhiteListModel>, append : Boolean) {
+        DaYuExceptionWhiteListManager.writeWhiteList(whiteListData, append)
     }
 }

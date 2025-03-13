@@ -9,7 +9,7 @@ import com.onedream.dayu.DaYu
  *@author chenguijian
  *@since 2025/3/12
  */
-object DaYuProtectorExceptionWhiteListManager {
+object DaYuExceptionWhiteListManager {
 
     internal fun protect(exception: Exception): Boolean {
         val exceptionClassName = exception.javaClass.simpleName
@@ -22,7 +22,7 @@ object DaYuProtectorExceptionWhiteListManager {
     }
 
 
-    private fun readWhiteList(): List<DaYuProtectorExceptionWhiteListModel> {
+    private fun readWhiteList(): List<DaYuExceptionWhiteListModel> {
         val whiteListData = readWhiteListByLocalFile();
         if (whiteListData.isNullOrEmpty()) {
             return defaultWhiteList()
@@ -30,15 +30,15 @@ object DaYuProtectorExceptionWhiteListManager {
         return whiteListData
     }
 
-    private fun readWhiteListByLocalFile(): List<DaYuProtectorExceptionWhiteListModel>? {
+    private fun readWhiteListByLocalFile(): List<DaYuExceptionWhiteListModel>? {
         val fileContent =
-            DaYuProtectorExceptionWhiteListFileManager.getExceptionWhiteListFileContent(DaYu.requireContext())
+            DaYuExceptionWhiteListFileManager.getExceptionWhiteListFileContent(DaYu.requireContext())
         if (fileContent.isNullOrEmpty()) {
             return null
         }
         try {
             val type: TypeToken<*>? = TypeToken.get(object :
-                TypeToken<List<DaYuProtectorExceptionWhiteListModel>>() {}.type)
+                TypeToken<List<DaYuExceptionWhiteListModel>>() {}.type)
             return Gson().fromJson(
                 fileContent,
                 type!!.type
@@ -49,27 +49,27 @@ object DaYuProtectorExceptionWhiteListManager {
         return ArrayList()
     }
 
-    private fun defaultWhiteList(): List<DaYuProtectorExceptionWhiteListModel> {
+    private fun defaultWhiteList(): List<DaYuExceptionWhiteListModel> {
         return arrayListOf(
-            DaYuProtectorExceptionWhiteListModel("NullPointerException")
+            DaYuExceptionWhiteListModel("NullPointerException")
         )
     }
 
     internal fun writeWhiteList(
-        whiteListData: List<DaYuProtectorExceptionWhiteListModel>,
+        whiteListData: List<DaYuExceptionWhiteListModel>,
         append: Boolean
     ) {
         if (append) {
             //FIXME : 考虑去重
-            val newWhiteListData = ArrayList<DaYuProtectorExceptionWhiteListModel>()
+            val newWhiteListData = ArrayList<DaYuExceptionWhiteListModel>()
             newWhiteListData.addAll(readWhiteList())
             newWhiteListData.addAll(whiteListData)
-            DaYuProtectorExceptionWhiteListFileManager.saveToLocalFile(
+            DaYuExceptionWhiteListFileManager.saveToLocalFile(
                 DaYu.requireContext(),
                 Gson().toJson(newWhiteListData)
             )
         } else {
-            DaYuProtectorExceptionWhiteListFileManager.saveToLocalFile(
+            DaYuExceptionWhiteListFileManager.saveToLocalFile(
                 DaYu.requireContext(),
                 Gson().toJson(whiteListData)
             )

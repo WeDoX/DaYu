@@ -21,7 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.onedream.dayu.protector.whitelist.DaYuProtectorExceptionWhiteListModel
+import com.onedream.dayu.protector.whitelist.DaYuExceptionWhiteListModel
 import com.onedream.dayu.ui.theme.DaYuTheme
 
 class MainActivity : ComponentActivity() {
@@ -89,7 +89,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun protectCustomerException(){
-        DaYu.writeWhiteList(arrayListOf(DaYuProtectorExceptionWhiteListModel("CustomerException")), true)
+        DaYu.writeWhiteList(arrayListOf(DaYuExceptionWhiteListModel("CustomerException")), true)
     }
 
     private fun getLastExceptionBug(){

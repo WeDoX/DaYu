@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets
  *@author chenguijian
  *@since 2025/3/13
  */
-object DaYuProtectorExceptionWhiteListFileManager {
+object DaYuExceptionWhiteListFileManager {
     private const val TAG = "WhiteListFileManager"
     private const val WHITELIST_DIR = "DaYu_protector"
     private const val WHITELIST_FILE_NAME = "exception_whitelist.json"

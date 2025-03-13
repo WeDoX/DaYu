@@ -8,7 +8,7 @@ import android.util.Log
  *@author chenguijian
  *@since 2025/3/13
  */
-class TestApplicationPerformanceMonitoringProtector : IProtector {
+class TestAPMProtector : IProtector {
 
     override fun protect(application: Application) {
         var startWorkTimeMillis = 0L
