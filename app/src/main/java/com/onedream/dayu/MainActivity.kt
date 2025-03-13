@@ -3,6 +3,7 @@ package com.onedream.dayu
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -85,7 +86,9 @@ class MainActivity : ComponentActivity() {
     private fun throwCustomerException(errMsg:String){
         Handler(Looper.getMainLooper()).post {
             throw CustomerException(errMsg)
+            Toast.makeText(this, "内部代码：任务执行前发生异常，配置异常白名单后还是不能继续执行", Toast.LENGTH_SHORT).show()
         }
+        Toast.makeText(this, "外部代码：任务执行前发生异常，配置异常白名单后还能继续执行", Toast.LENGTH_SHORT).show()
     }
 
     private fun protectCustomerException(){

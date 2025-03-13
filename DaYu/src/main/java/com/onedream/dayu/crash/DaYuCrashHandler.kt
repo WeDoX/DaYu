@@ -21,7 +21,7 @@ object DaYuCrashHandler {
         try {
             throwable?.apply {
                 val crashLogStr = DaYuCrashLogModelBuilder.createCrashLogStr(context, this)
-                DaYuCrashLogFileManager.saveToLocalFile(context, crashLogStr)
+                DaYuCrashFileManager.saveToLocalFile(context, crashLogStr)
             }
         } finally {
             restartApp(context)

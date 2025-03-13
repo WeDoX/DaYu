@@ -3,7 +3,7 @@ package com.onedream.dayu
 import android.app.Application
 import android.content.Context
 import com.onedream.dayu.crash.DaYuCrashHandler
-import com.onedream.dayu.crash.DaYuCrashLogFileManager
+import com.onedream.dayu.crash.DaYuCrashFileManager
 import com.onedream.dayu.protector.LaoYe
 import com.onedream.dayu.protector.whitelist.DaYuExceptionWhiteListManager
 import com.onedream.dayu.protector.whitelist.model.DaYuExceptionWhiteListModel
@@ -32,7 +32,7 @@ object DaYu {
 
     @JvmStatic
     fun getCrashLogFile(context: Context): File? {
-        return DaYuCrashLogFileManager.getCrashLogFile(context)
+        return DaYuCrashFileManager.getCrashLogFile(context)
     }
 
     @JvmStatic

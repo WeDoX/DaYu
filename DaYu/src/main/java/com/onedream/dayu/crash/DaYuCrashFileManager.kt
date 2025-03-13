@@ -10,9 +10,9 @@ import java.nio.charset.StandardCharsets
  *@author chenguijian
  *@since 2025/3/12
  */
-object DaYuCrashLogFileManager {
+object DaYuCrashFileManager {
     private const val TAG = "DaYuCrashLogFileManager"
-    private const val CRASH_LOG_DIR = "DaYu_Log"
+    private const val CRASH_LOG_DIR = "DaYu_log"
     private const val CRASH_LOG_FILE_NAME = "crash.json"
 
     //
