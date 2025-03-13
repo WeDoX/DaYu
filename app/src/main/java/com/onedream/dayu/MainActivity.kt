@@ -60,8 +60,8 @@ class MainActivity : ComponentActivity() {
                         })
                         //
                         Spacer(modifier = Modifier.height(20.dp))
-                        PlayBugButton(btnTitle= "getLastExceptionBug", onClick = {
-                            getLastExceptionBug()
+                        PlayBugButton(btnTitle= "getLastExceptionBugLog", onClick = {
+                            getLastExceptionBugLog()
                         })
 
                         Greeting(message.value)
@@ -75,6 +75,7 @@ class MainActivity : ComponentActivity() {
         Handler(Looper.getMainLooper()).post {
             throw NullPointerException()
         }
+        Toast.makeText(this, "默认配置白名单中：遇到空指针异常App不崩溃", Toast.LENGTH_SHORT).show()
     }
 
     private fun throwException(errMsg:String){
@@ -95,7 +96,7 @@ class MainActivity : ComponentActivity() {
         DaYu.writeWhiteList(arrayListOf(DaYuExceptionWhiteListModel("CustomerException")), true)
     }
 
-    private fun getLastExceptionBug(){
+    private fun getLastExceptionBugLog(){
         val crashLogFile = DaYu.getCrashLogFile(this@MainActivity)
         var crashLog = ""
         crashLogFile?.forEachLine { line ->
