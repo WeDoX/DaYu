@@ -24,9 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.onedream.dayu.protector.whitelist.model.DaYuExceptionWhiteListModel
 import com.onedream.dayu.ui.theme.DaYuTheme
+import com.onedream.dayu_uploader_service.DaYuUploaderService
 
 class MainActivity : ComponentActivity() {
     val message = mutableStateOf("Android")
+    val uploadBtnText = mutableStateOf("uploadCrashLogFile")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,11 @@ class MainActivity : ComponentActivity() {
                         Spacer(modifier = Modifier.height(20.dp))
                         PlayBugButton(btnTitle= "getLastExceptionBugLog", onClick = {
                             getLastExceptionBugLog()
+                        })
+                        //
+                        Spacer(modifier = Modifier.height(20.dp))
+                        PlayBugButton(btnTitle= uploadBtnText.value, onClick = {
+                            uploadCrashLogFile()
                         })
 
                         Greeting(message.value)
@@ -103,6 +110,16 @@ class MainActivity : ComponentActivity() {
             crashLog = "$crashLog \n $line"
         }
         message.value = crashLog
+    }
+
+    private fun uploadCrashLogFile(){
+        uploadBtnText.value = "上传中"
+        val crashLogFile = DaYu.getCrashLogFile(this@MainActivity)
+        DaYuUploaderService.uploadLogFile(crashLogFile, success = {
+            uploadBtnText.value = "上传成功"
+        }, error = {
+            uploadBtnText.value = it
+        })
     }
 }
 
