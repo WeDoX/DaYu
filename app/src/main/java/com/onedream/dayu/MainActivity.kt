@@ -27,7 +27,7 @@ import com.onedream.dayu.ui.theme.DaYuTheme
 import com.onedream.dayu_uploader_service.DaYuUploaderService
 
 class MainActivity : ComponentActivity() {
-    val message = mutableStateOf("Android")
+    val message = mutableStateOf("")
     val uploadBtnText = mutableStateOf("uploadCrashLogFile")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +76,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        //
+        getLastExceptionBugLog()
     }
 
     private fun throwNullPointerException(){
