@@ -117,6 +117,7 @@ class MainActivity : ComponentActivity() {
         val crashLogFile = DaYu.getCrashLogFile(this@MainActivity)
         DaYuUploaderService.uploadLogFile(crashLogFile, success = {
             uploadBtnText.value = "上传成功"
+            getLastExceptionBugLog()
         }, error = {
             uploadBtnText.value = it
         })
@@ -126,7 +127,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "$name",
         modifier = modifier
     )
 }
